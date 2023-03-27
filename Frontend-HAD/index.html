@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IIITB HOSPITAL</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" 
+            crossorigin="anonymous">
+
+        <link
+            href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+            rel="stylesheet"
+        />
+
+        <link
+                href="style.css"
+                rel="stylesheet"
+        />
+    </head>
+
+    <body onload="onPatientRegistrationLoad()"> 
+        
+        <header>
+            <h1>IIITB HOSPITAL</h1>
+        </header>
+
+        <main class="content">
+            <h2>PATIENT REGISTRATION</h2>
+            <div class="initialForm">
+                <form id="abhaVeri">
+                    <input id="abhaId" type="text" name="abhaId" placeholder="Enter ABHA ID">
+                    <button type="submit">Submit for ABHA otp Verification</button>
+                </form>
+                <br>
+                <form id="otpVeri">
+                    <input id="otp" type="text" name="otp" placeholder="Enter OTP received">
+                    <button type="submit">Submit and fetch patient's demographic details</button>
+                </form>  
+				<div id = "loader">
+				
+				</div>
+            </div>
+            <hr>
+            <hr>
+            <h2>PATIENT DEMOGRAPHIC DETAILS</h2>
+            <div class="demographicForm">
+                <form class="demographic" id="demographicDetails">
+                    <p>NAME:</p>
+                    <input type="text" name="name" placeholder="Enter Patient's Name"><br><br>
+    
+                    <p style="margin-bottom: 0;">Gender</p><br>
+                    <input style="width:10px;" type="radio" id="male" name="gender" value="M">
+                    <label for="male">MALE</label><br>
+                    <input style="width:10px;" type="radio" id="female" name="gender" value="F">
+                    <label for="female">FEMALE</label><br>
+                    <input style="width:10px;" type="radio" id="other" name="gender" value="O">
+                    <label for="other">OTHER</label><br><br>
+                    
+                    <p>DOB:</p>
+                    <input type="text" name="yearOfBirth" placeholder="Enter Patient's Year of Birth">
+                    <input type="text" name="monthOfBirth" placeholder="Enter Patient's Month of Birth">
+                    <input type="text" name="dayOfBirth" placeholder="Enter Patient's Day of Birth"><br><br>
+                    
+                    <p>Address Line:</p>
+                    <input type="text" name="line" placeholder="Enter Patient's address"><br><br>
+                    
+                    <p>District:</p>
+                    <input type="text" name="district" placeholder="Enter Patient's District of Residence"><br><br>
+                    
+                    <p>State:</p>
+                    <input type="text" name="state" placeholder="Enter Patient's State of Residence"><br><br>
+                    
+                    <p>Pincode:</p>
+                    <input type="text" name="pincode" placeholder="Enter Patient's pincode of Residence"><br><br>
+    
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+
+        </main>
+
+        <!-- SCRIPTS -->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="main.js"></script>        
+    </body>
+</html>
