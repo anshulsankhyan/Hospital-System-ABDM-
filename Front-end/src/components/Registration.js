@@ -94,39 +94,39 @@ class Registration extends Component {
 
           <form className='patientDetailsSubmit'>
             <label htmlFor='name'>NAME:</label>
-            <input type='text' id='name' name='name' placeholder="Enter Patient's Name" value={name = pname? pname : name} onChange={this.changeHandler} />
+            <input type='text' id='name' name='name' placeholder="Enter Patient's Name" value={pname? pname : name} onChange={this.changeHandler} />
 
             <label htmlFor="gender">GENDER:</label>
-            <select name='gender' id='gender' value={gender = pgender? pgender : gender} onChange={this.genderChangeHandler}>
+            <select name='gender' id='gender' value={pgender? pgender : gender} onChange={this.genderChangeHandler}>
               <option value='male'>Male</option>
               <option value='female'>Female</option>
               <option value='other'>Other</option>
             </select>
 
             <label htmlFor='yearOfBirth'>YEAR:</label>
-            <input type='text' id='yearOfBirth' name='yearOfBirth' placeholder="Enter Patient's Year of Birth" value={yearOfBirth = pyear ? pyear : yearOfBirth} onChange={this.changeHandler} />
+            <input type='text' id='yearOfBirth' name='yearOfBirth' placeholder="Enter Patient's Year of Birth" value={pyear ? pyear : yearOfBirth} onChange={this.changeHandler} />
             <label htmlFor='monthOfBirth'>MONTH:</label>
-            <input type='text' id='monthOfBirth' name='monthOfBirth' placeholder="Enter Patient's Month of Birth" value={monthOfBirth = pmonth ? pmonth : monthOfBirth} onChange={this.changeHandler} />
+            <input type='text' id='monthOfBirth' name='monthOfBirth' placeholder="Enter Patient's Month of Birth" value={pmonth ? pmonth : monthOfBirth} onChange={this.changeHandler} />
             <label htmlFor='dayOfBirth'>DATE:</label>
-            <input type='text' id='dayOfBirth' name='dayOfBirth' placeholder="Enter Patient's Date of Birth" value={dayOfBirth = pdate ? pdate : dayOfBirth} onChange={this.changeHandler} />
+            <input type='text' id='dayOfBirth' name='dayOfBirth' placeholder="Enter Patient's Date of Birth" value={pdate ? pdate : dayOfBirth} onChange={this.changeHandler} />
 
             <label htmlFor='line'>ADDRESS:</label>
-            <input type='text' id='line' name='line' placeholder="Enter Patient's address" value={line = paddress ? paddress : line} onChange={this.changeHandler} />
+            <input type='text' id='line' name='line' placeholder="Enter Patient's address" value={paddress ? paddress : line} onChange={this.changeHandler} />
 
             <label htmlFor='district'>DISTRICT:</label>
-            <input type='text' id='district' name='district' placeholder="Enter Patient's District of Residence" value={district = pdistrict ? pdistrict : district} onChange={this.changeHandler} />
+            <input type='text' id='district' name='district' placeholder="Enter Patient's District of Residence" value={pdistrict ? pdistrict : district} onChange={this.changeHandler} />
 
             <label htmlFor='state'>STATE:</label>
-            <input type='text' id='state' name='state' placeholder="Enter Patient's State of Residence" value={state = pstate ? pstate : state} onChange={this.changeHandler} />
+            <input type='text' id='state' name='state' placeholder="Enter Patient's State of Residence" value={pstate ? pstate : state} onChange={this.changeHandler} />
 
             <label htmlFor='pincode'>PINCODE:</label>
-            <input type='text' id='pincode' name='pincode' placeholder="Enter Patient's Pincode of Residence" value={pincode = ppincode ? ppincode : pincode} onChange={this.changeHandler} />
+            <input type='text' id='pincode' name='pincode' placeholder="Enter Patient's Pincode of Residence" value={ppincode ? ppincode : pincode} onChange={this.changeHandler} />
 
             <label htmlFor='weight'>WEIGHT(kg):</label>
             <input type='text' id='weight' name='weight' placeholder="Enter Patient's Weight in Kg" value={weight} onChange={this.changeHandler} />
 
             <label htmlFor='mobileNumber'>MOBILE NO:</label>
-            <input type='text' id='mobileNumber' name='mobileNumber' placeholder="Enter Patient's Mobile No" value={mobileNumber = pmobile ? pmobile : mobileNumber} onChange={this.changeHandler} />
+            <input type='text' id='mobileNumber' name='mobileNumber' placeholder="Enter Patient's Mobile No" value={pmobile ? pmobile : mobileNumber} onChange={this.changeHandler} />
 
             <label htmlFor='emailId'>EMAIL:</label>
             <input type='text' id='emailId' name='emailId' placeholder="Enter Patient's email address" value={emailId} onChange={this.changeHandler} />

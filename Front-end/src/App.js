@@ -6,11 +6,11 @@ import Navbar from './components/Navbar';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
-import Registration from './components/Registration';
-import PatientSearch from './components/PatientSearch';
-import PatientConsultation from './components/PatientConsultation';
-import PatientDashboard from './components/PatientDashboard';
-import DoctorAssignment from './components/DoctorAssignment';
+// import Registration from './components/Registration';
+// import PatientSearch from './components/PatientSearch';
+// import PatientConsultation from './components/PatientConsultation';
+// import PatientDashboard from './components/PatientDashboard';
+// import DoctorAssignment from './components/DoctorAssignment';
 import AbhaVerification from './components/AbhaVerification';
 import PatientLogin from './components/PatientLogin';
 import WrapperRegistration from './components/WrapperRegistration';
