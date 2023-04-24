@@ -11,7 +11,8 @@ export class DoctorLogin extends Component {
             id: '',
             password: '',
             flag: false,
-            objectOfPatientList: {}
+            objectOfPatientList: {},
+            type: 'doctor'
         }
     }
 
@@ -27,6 +28,7 @@ export class DoctorLogin extends Component {
             .post('http://localhost:8080/login', {
                 id: this.state.id,
                 password: this.state.password,
+                type: this.state.type
             })
             .then(res => {
                 if (res.status >= 200 && res.status <= 299 && res.data !== 'invalid credentials') {
