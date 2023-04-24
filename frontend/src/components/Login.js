@@ -10,7 +10,6 @@ export class Login extends Component {
       this.state = {
         id: '',
         password: '',
-        type: 'receptionist',
         flag: false,
         objectOfPatientList: {}
       }
@@ -65,6 +64,8 @@ export class Login extends Component {
 
     render() {
         const {id, password, type, flag} = this.state
+
+        console.log(this.props)
 
         if(type === 'doctor' && flag) return <Navigate to='/search' state= {this.state.objectOfPatientList}/>
         

@@ -24,19 +24,20 @@ class AbhaVerification extends Component {
 
     abhaSubmitHandler = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:8080/otp', {
-            requestId: '',
-            timestamp: '',
-            query: {
-                id: this.state.abhaid,
-                purpose: 'KYC_AND_LINK',
-                authMode: 'MOBILE_OTP',
-                requester: {
-                    type: 'HIP',
-                    id: '919'
+        axios
+            .post('http://localhost:8080/otp', {
+                requestId: '',
+                timestamp: '',
+                query: {
+                    id: this.state.abhaid,
+                    purpose: 'KYC_AND_LINK',
+                    authMode: 'MOBILE_OTP',
+                    requester: {
+                        type: 'HIP',
+                        id: '919'
+                    }
                 }
-            }
-        })
+            })
             .then(r => {
                 if (r.status >= 200 && r.status <= 299) {
                     axios.post('http://localhost:8080/get-otp', {
@@ -44,6 +45,7 @@ class AbhaVerification extends Component {
                         timestamp: '',
                         query: {
                             id: this.state.abhaid,
+                            authMode: 'MOBILE_OTP',
                             purpose: 'KYC_AND_LINK',
                             requester: {
                                 type: 'HIP',
@@ -74,14 +76,20 @@ class AbhaVerification extends Component {
             transactionId: '',
             abhaId: this.state.abhaid,
             credential: {
-                authcode: 'this.state.otp'
+                authcode: this.state.otp
             }
         })
             .then(r => {
                 if (r.status >= 200 && r.status <= 299) {
-
-                    let intervalId = setInterval(() => {
-                        axios.post('http://localhost:8080/get-demographic', { abhaid: this.state.abhaid })
+                    var timesRun = 0
+                    var intervalId = setInterval(() => {
+                        timesRun += 1
+                        if (timesRun === 5) {
+                            clearInterval(intervalId)
+                            alert('Server Busy. Try Again!')
+                        }
+                        axios
+                            .post('http://localhost:8080/get-demographic', { abhaId: this.state.abhaid })
                             .then(res => {
                                 if (res.status >= 200 && res.status <= 299) {
                                     clearInterval(intervalId)
@@ -98,7 +106,6 @@ class AbhaVerification extends Component {
                             })
                     }, 5000)
                 }
-                else alert('INVALID ABHA ID')
             })
             .catch(e => {
                 alert('Error catched on get-demographics call')
@@ -116,7 +123,7 @@ class AbhaVerification extends Component {
 
         if (goToRegistration) return <Navigate to='/registration' state={this.state.patientDemographic} />
 
-        else if(existingPatient) return <Navigate to='/patientlogin'/>
+        else if (existingPatient) return <Navigate to='/patientlogin' />
         else
             return (
                 <div className='registrationBlock'>
