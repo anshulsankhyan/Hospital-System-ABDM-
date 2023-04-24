@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <nav className='navbar'>
       <NavLink to='/' >HOME</NavLink>
-      <NavLink to='login'>LOGIN</NavLink>
+      <NavLink to='adminlogin'> ADMIN LOGIN</NavLink>
       <p className='navbartitle'>XYZ HOSPITAL</p>
     </nav>
   )

@@ -11,6 +11,7 @@ import WrapperPatientConsultation from './components/WrapperPatientConsultation'
 import WrapperPatientDashboard from './components/WrapperPatientDashboard';
 import ReceptionistLogin from './components/ReceptionistLogin';
 import DoctorLogin from './components/DoctorLogin';
+import AdminLogin from './components/AdminLogin';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path='assignment' element={<WrapperAssignment/>}></Route> 
         
         <Route path='patientlogin' element={<PatientLogin/>}></Route>
+        <Route path='adminlogin' element={<AdminLogin/>}></Route>
       </Routes>
     </>
   );

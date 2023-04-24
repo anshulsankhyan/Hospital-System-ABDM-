@@ -10,7 +10,8 @@ export class ReceptionistLogin extends Component {
       this.state = {
         id: '',
         password: '',
-        goToAbha: false
+        goToAbha: false,
+        type: 'receptionist'
       }
     }
 
@@ -25,7 +26,8 @@ export class ReceptionistLogin extends Component {
         axios
             .post('http://localhost:8080/login', {
                 id: this.state.id,
-                password: this.state.password
+                password: this.state.password,
+                type: this.state.type
             })
             .then(res => {
                 if(res.status >= 200 && res.status <= 299 && res.data !== 'invalid credentials') {
