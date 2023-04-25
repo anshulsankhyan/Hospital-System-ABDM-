@@ -22,7 +22,7 @@ class Registration extends Component {
       emailId: '',
       bloodGroup: '',
       goToAssignment: false,
-      patientId:'',
+      patientId: '',
       address: '',
       abhaId : '',
     }
@@ -63,9 +63,11 @@ class Registration extends Component {
     .then(r => {
       if(r.status >= 200 && r.status <= 299) {
         this.setState({
-          patientId: this.props.data.state.patientId,
-          abhaId: this.props.data.state.abhaId,
+          patientId: this.props.data?.state?.patientId,
+          abhaId: this.props.data?.state?.abhaId,
           goToAssignment: true
+        }, () => {
+          console.log(this.state)
         })
       }
       else console.log('error encountered at registration component')
@@ -86,6 +88,7 @@ class Registration extends Component {
     var pmobile = this.props.data?.state?.mobileNumber || mobileNumber
 
     if(goToAssignment) return <Navigate to='/assignment' state={this.state}/>
+    else
     return (
       <div className='registrationBlock'>
         <div className='registrationHeading'>
