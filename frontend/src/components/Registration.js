@@ -42,10 +42,10 @@ class Registration extends Component {
   patientDetailsSubmit = e => {
     e.preventDefault()
     axios.post('http://localhost:8080/save-patient', {
-      abhaId: this.props.data.state.abhaId,
+      abhaId: this.props.data?.state?.abhaId,
       mobileNumber: this.state.mobileNumber,
-      healthNumber: this.props.data.state.healthNumber,
-      patientId: this.props.data.state.patientId,
+      healthNumber: this.props.data?.state?.healthNumber,
+      patientId: this.props.data?.state?.patientId,
       bloodGroup: this.state.bloodGroup,
       weight: this.state.weight,
       emailId: this.state.emailId,
@@ -98,7 +98,7 @@ class Registration extends Component {
         <div className='registrationNew'>
           <h4>Patient Demographic and other details</h4>
 
-          <form className='patientDetailsSubmit'>
+          <form className='patientDetailsSubmit' onSubmit={this.patientDetailsSubmit}>
             <label htmlFor='name'>NAME:</label>
             <input type='text' id='name' name='name' placeholder="Enter Patient's Name" value={name = pname? pname : name} onChange={this.changeHandler} />
 
