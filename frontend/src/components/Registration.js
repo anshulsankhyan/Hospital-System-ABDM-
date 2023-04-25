@@ -98,7 +98,7 @@ class Registration extends Component {
         <div className='registrationNew'>
           <h4>Patient Demographic and other details</h4>
 
-          <form className='patientDetailsSubmit' onSubmit={this.patientDetailsSubmit}>
+          <form className='patientDetailsForm' onSubmit={this.patientDetailsSubmit}>
             <label htmlFor='name'>NAME:</label>
             <input type='text' id='name' name='name' placeholder="Enter Patient's Name" value={name = pname? pname : name} onChange={this.changeHandler} />
 

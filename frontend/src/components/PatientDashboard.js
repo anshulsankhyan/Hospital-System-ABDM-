@@ -5,11 +5,11 @@ class PatientDashboard extends Component {
 
     constructor(props) {
         super(props)
-      
+
         this.state = {
-           goToConsultation: false
+            goToConsultation: false
         }
-      }
+    }
 
     consultationSubmitHandler = e => {
         this.setState({
@@ -24,7 +24,7 @@ class PatientDashboard extends Component {
         // const diagnosisList = this.props.data.state.diagnosis.map(diagnosis => <li> {diagnosis.value} </li>)
         // const labResultsList = this.props.data.state.labResult.map(labResult => <li> {labResult.value} </li>)
 
-        if(this.state.goToConsultation) return <Navigate to='/consultation'/>
+        if (this.state.goToConsultation) return <Navigate to='/consultation' />
         return (
             <div>
                 <div className='topbar'>
@@ -39,9 +39,9 @@ class PatientDashboard extends Component {
                     <h4>Age - 25</h4>
                     <h4>Patient Id - 2678588</h4>
                     <form onSubmit={this.consultationSubmitHandler}>
-                    <button type='submit'>Consultation</button>
+                        <button type='submit'>Consultation</button>
                     </form>
-                    
+
                 </div>
 
                 <div className='visits'>
