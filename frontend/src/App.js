@@ -12,6 +12,7 @@ import WrapperPatientDashboard from './components/WrapperPatientDashboard';
 import ReceptionistLogin from './components/ReceptionistLogin';
 import DoctorLogin from './components/DoctorLogin';
 import AdminLogin from './components/AdminLogin';
+import NoMatch from './components/NoMatch';
 
 function App() {
   return (
@@ -34,6 +35,8 @@ function App() {
         
         <Route path='patientlogin' element={<PatientLogin/>}></Route>
         <Route path='adminlogin' element={<AdminLogin/>}></Route>
+
+        <Route path='*' element={<NoMatch/>}></Route>
       </Routes>
     </>
   );
