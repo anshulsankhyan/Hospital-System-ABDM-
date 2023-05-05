@@ -13,6 +13,7 @@ import ReceptionistLogin from './components/ReceptionistLogin';
 import DoctorLogin from './components/DoctorLogin';
 import AdminLogin from './components/AdminLogin';
 import NoMatch from './components/NoMatch';
+import AdminSelect from './components/AdminSelect';
 
 function App() {
   return (
@@ -35,6 +36,8 @@ function App() {
         
         <Route path='patientlogin' element={<PatientLogin/>}></Route>
         <Route path='adminlogin' element={<AdminLogin/>}></Route>
+
+        <Route path='adminselect' element={<AdminSelect/>}></Route>
 
         <Route path='*' element={<NoMatch/>}></Route>
       </Routes>

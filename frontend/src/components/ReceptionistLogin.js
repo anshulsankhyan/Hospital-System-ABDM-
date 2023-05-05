@@ -29,7 +29,7 @@ export class ReceptionistLogin extends Component {
                 password: this.state.password
             })
             .then(res => {
-                if(res.status >= 200 && res.status <= 299 && res.data !== 'invalid credentials' && res.data.type === 'receptionist') {
+                if(res.status >= 200 && res.status <= 299 && res.data !== 'invalid credentials' && res.data === 'receptionist') {
                     this.setState({
                         goToAbha: true
                     })

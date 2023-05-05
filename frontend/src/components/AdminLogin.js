@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Navigate } from 'react-router-dom'
 
 export class AdminLogin extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ export class AdminLogin extends Component {
       id: '',
       password: '',
       type: 'admin',
-      flag: false
+      goToAdminDashboard: false
     }
   }
 
@@ -26,22 +27,10 @@ export class AdminLogin extends Component {
         password: this.state.password
       })
       .then(res => {
-        if (res.status >= 200 && res.status <= 299 && res.data !== 'invalid credentials' && res.data.type === 'admin') {
-
-          axios.post('http://localhost:8080/patient-list', {
-            doctorId: this.state.id
-          })
-            .then(res => {
-              this.setState({
-                objectOfPatientList: res.data,
-                flag: true
-              })
-            })
-            .catch(e => {
-              console.log(e);
-              alert("Error fetching doctor's patient list")
-            })
-
+        if (res.status >= 200 && res.status <= 299 && res.data !== 'invalid credentials' && res.data === 'admin') {
+          this.setState({
+            goToAdminDashboard: true
+        })
         }
         else alert('Invalid Credentials')
       })
@@ -51,7 +40,10 @@ export class AdminLogin extends Component {
       })
   }
   render() {
-    const { id, password, flag } = this.state
+    const { id, password, goToAdminDashboard } = this.state
+
+    if(goToAdminDashboard) return <Navigate to='adminselect'/>
+    else
     return (
       <div>
         <div className='loginblock'>
