@@ -55,13 +55,16 @@ class DoctorAdd extends Component {
                     goToAdminSelect : true
                 })
             }
+            else {
+                alert('Server Down')
+            }
         })
     }
 
     render() {
         const { name, gender, yearOfBirth, abha_id, address, mobile, speciality, email_id, country, password, goToAdminSelect } = this.state
 
-        if(goToAdminSelect) return <Navigate to = 'adminselect'/>
+        if(goToAdminSelect) return <Navigate to = 'doctoradd'/>
         else
         return (
             <div className='registrationBlock'>
@@ -104,8 +107,8 @@ class DoctorAdd extends Component {
                         <label htmlFor='speciality'>SPECIALITY:</label>
                         <input type='text' id='speciality' name='speciality' placeholder="Enter Doctor's speciality" value={speciality} onChange={this.changeHandler} />
 
-                        <label htmlFor='password'>TEMPORARY PASSWORD:</label>
-                        <input type='text' id='password' name='password' placeholder="Enter temporary password for Doctor" value={password} onChange={this.changeHandler} />
+                        <label htmlFor='password'>PASSWORD:</label>
+                        <input type='text' id='password' name='password' placeholder="Enter password for Doctor" value={password} onChange={this.changeHandler} />
 
                         <button type='submit'>Save</button>
                     </form>

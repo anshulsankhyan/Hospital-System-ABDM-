@@ -49,11 +49,14 @@ class ReceptionistAdd extends Component {
                     goToAdminSelect : true
                 })
             }
+            else {
+                alert('Server Down')
+            }
         })
     }
     render() {
         const { name, gender, yearOfBirth, address, mobile, email_id, password, goToAdminSelect } = this.state
-        if(goToAdminSelect) return <Navigate to = 'adminselect'/>
+        if(goToAdminSelect) return <Navigate to = 'receptionistadd'/>
         else
         return (
             <div className='registrationBlock'>
@@ -87,8 +90,8 @@ class ReceptionistAdd extends Component {
                         <label htmlFor='email_id'>EMAIL ID:</label>
                         <input type='text' id='email_id' name='email_id' placeholder="Enter Receptionist's email address" value={email_id} onChange={this.changeHandler} />
 
-                        <label htmlFor='password'>TEMPORARY PASSWORD:</label>
-                        <input type='text' id='password' name='password' placeholder="Enter Receptionist's temporary password" value={password} onChange={this.changeHandler} />
+                        <label htmlFor='password'>PASSWORD:</label>
+                        <input type='text' id='password' name='password' placeholder="Enter Receptionist's password" value={password} onChange={this.changeHandler} />
 
                         <button type='submit'>Save</button>
                     </form>

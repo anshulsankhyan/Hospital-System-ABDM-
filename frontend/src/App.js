@@ -14,6 +14,8 @@ import DoctorLogin from './components/DoctorLogin';
 import AdminLogin from './components/AdminLogin';
 import NoMatch from './components/NoMatch';
 import AdminSelect from './components/AdminSelect';
+import ReceptionistAdd from './components/ReceptionistAdd';
+import DoctorAdd from './components/DoctorAdd';
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
         <Route path='adminlogin' element={<AdminLogin/>}></Route>
 
         <Route path='adminselect' element={<AdminSelect/>}></Route>
+        <Route path='receptionistadd' element={<ReceptionistAdd/>}></Route>
+        <Route path='doctoradd' element={<DoctorAdd/>}></Route>
 
         <Route path='*' element={<NoMatch/>}></Route>
       </Routes>
