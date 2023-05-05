@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface Save {
 
-    String savePres(bean obj);
+    String  savePres(bean obj);
 
     ResponseEntity<bean> showPres(patientIDRes object);
 }

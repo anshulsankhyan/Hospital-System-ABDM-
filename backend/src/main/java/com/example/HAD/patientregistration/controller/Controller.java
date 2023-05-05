@@ -52,7 +52,6 @@ public class Controller {
 
 	@Autowired
 	WebClient webclient;
-	
 	String auth="Authorization";
 	String id="X-CM-ID";
 	String idValue="sbx";
@@ -251,7 +250,7 @@ public class Controller {
         }
         else
         {
-        	dbresponse.setRequestId(emp.getQuery().getId());
+        	dbresponse.setRequestId(randomUUIDString);
         	transactionIdRepository.save(dbresponse);
         	
         }

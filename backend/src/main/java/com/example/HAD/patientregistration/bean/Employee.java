@@ -1,9 +1,9 @@
 package com.example.HAD.patientregistration.bean;
 
 public class Employee {
-	private String clientId="SBX_002039";
+	private String clientId="SBX_002860";
 	
-	private String clientSecret= "216f7db8-6695-46d9-92b1-44f050dcd212";
+	private String clientSecret= "f7046678-9e0f-49ed-bbfd-220fb986c1ca";
 
 	public String getClientId() {
 		return clientId;

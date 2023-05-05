@@ -1,14 +1,12 @@
 package com.example.HAD.login.bean;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class LoginBean {
-	
-	  @Id
-	  @Column( length = 50)
+
+	@Id
+
 	    private String id;
 
 	    public String getId() {
@@ -37,7 +35,14 @@ public class LoginBean {
 	        return type;
 	    }
 
-	    private String type;
+	public LoginBean() {
+	}
 
+	private String type;
 
+	public LoginBean(String id, String password, String type) {
+		this.id = id;
+		this.password = password;
+		this.type = type;
+	}
 }

@@ -2,6 +2,10 @@ package com.example.HAD;
 
 
 
+import com.example.HAD.login.bean.LoginBean;
+import com.example.HAD.login.dao.JpaRepo;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -36,6 +40,18 @@ public class HadApplication {
 //		//return token;
 //		
 //	}
+@Autowired
+JpaRepo dao;
+
+
+	@Bean
+	InitializingBean LogingBean() {
+		return () -> {
+
+			dao.save(new LoginBean ("101", "pass", "admin"));
+
+		};
+	}
 	@Bean
 	//@DependsOn({"Token"})
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
@@ -43,7 +59,6 @@ public class HadApplication {
 	{
 		WebClient webClinet=WebClient.create();
 		Employee emp = new Employee();
-
 		Mono<TokenResponse> res = webClinet.post().uri("https://dev.abdm.gov.in/gateway/v0.5/sessions")
 				.body(Mono.just(emp), Employee.class).exchange()
 				.flatMap(clientResponse -> clientResponse.bodyToMono(TokenResponse.class));
@@ -69,5 +84,10 @@ public class HadApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HadApplication.class, args);
 	}
+
+
+
+
+
 
 }

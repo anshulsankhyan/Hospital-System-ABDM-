@@ -1,8 +1,8 @@
 package com.example.HAD.prescription.controller;
 
-import com.example.HAD.AbhaIDRequest;
-import com.example.HAD.PatientDemographicBean;
-import com.example.HAD.login.bean.loginbean;
+//import com.example.HAD.AbhaIDRequest;
+//import com.example.HAD.PatientDemographicBean;
+//import com.example.HAD.login.bean.loginbean;
 import com.example.HAD.prescription.bean.bean;
 import com.example.HAD.prescription.bean.patientIDRes;
 import com.example.HAD.prescription.dao.savedata;
