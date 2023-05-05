@@ -27,11 +27,10 @@ export class DoctorLogin extends Component {
         axios
             .post('http://localhost:8080/login', {
                 id: this.state.id,
-                password: this.state.password,
-                type: this.state.type
+                password: this.state.password
             })
             .then(res => {
-                if (res.status >= 200 && res.status <= 299 && res.data !== 'invalid credentials') {
+                if (res.status >= 200 && res.status <= 299 && res.data !== 'invalid credentials' && res.data.type === 'doctor') {
 
                     axios.post('http://localhost:8080/patient-list', {
                         doctorId: this.state.id

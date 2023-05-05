@@ -26,11 +26,10 @@ export class ReceptionistLogin extends Component {
         axios
             .post('http://localhost:8080/login', {
                 id: this.state.id,
-                password: this.state.password,
-                type: this.state.type
+                password: this.state.password
             })
             .then(res => {
-                if(res.status >= 200 && res.status <= 299 && res.data !== 'invalid credentials') {
+                if(res.status >= 200 && res.status <= 299 && res.data !== 'invalid credentials' && res.data.type === 'receptionist') {
                     this.setState({
                         goToAbha: true
                     })

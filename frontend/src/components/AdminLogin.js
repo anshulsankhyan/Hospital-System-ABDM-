@@ -1,23 +1,55 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 export class AdminLogin extends Component {
   constructor(props) {
     super(props)
-  
+
     this.state = {
-       id: '',
-       password: '',
-       type: 'admin',
-       flag: false
+      id: '',
+      password: '',
+      type: 'admin',
+      flag: false
     }
   }
 
   changeHandler = (event) => {
     this.setState({
-        [event.target.name]: event.target.value
+      [event.target.name]: event.target.value
     })
-}
-  
+  }
+  submitHandler = (event) => {
+    event.preventDefault()
+    axios
+      .post('http://localhost:8080/login', {
+        id: this.state.id,
+        password: this.state.password
+      })
+      .then(res => {
+        if (res.status >= 200 && res.status <= 299 && res.data !== 'invalid credentials' && res.data.type === 'admin') {
+
+          axios.post('http://localhost:8080/patient-list', {
+            doctorId: this.state.id
+          })
+            .then(res => {
+              this.setState({
+                objectOfPatientList: res.data,
+                flag: true
+              })
+            })
+            .catch(e => {
+              console.log(e);
+              alert("Error fetching doctor's patient list")
+            })
+
+        }
+        else alert('Invalid Credentials')
+      })
+      .catch(err => {
+        console.log(err)
+        alert('Server Down')
+      })
+  }
   render() {
     const { id, password, flag } = this.state
     return (
@@ -47,7 +79,6 @@ export class AdminLogin extends Component {
     )
   }
 }
-
 export default AdminLogin
 
 
