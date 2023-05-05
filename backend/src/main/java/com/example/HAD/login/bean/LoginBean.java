@@ -1,13 +1,14 @@
 package com.example.HAD.login.bean;
 
+import com.example.HAD.admin.doctor.docbean;
+
 import javax.persistence.*;
 
 @Entity
 public class LoginBean {
 
 	@Id
-
-	    private String id;
+	private String id;
 
 	    public String getId() {
 	        return id;
@@ -34,6 +35,11 @@ public class LoginBean {
 	    public String getType() {
 	        return type;
 	    }
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_hos_id",referencedColumnName = "hos_id")
+	private docbean bean;
+
 
 	public LoginBean() {
 	}

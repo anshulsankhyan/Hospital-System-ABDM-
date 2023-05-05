@@ -23,16 +23,22 @@ public class doc_ser_imp implements doc_service {
         
         docbean firstbean = new docbean();
         LoginBean secondbean = new LoginBean();
+
+
+
+        String generated_id = idgenerator.generateDoctorHospitalId(obj.getName(), obj.getspeciality());
+        String generated_hos_id = idgenerator.generateDoctorHospitalId(obj.getName(), "XYZ");
         
         firstbean.setMobile(obj.getMobile());
         firstbean.setName(obj.getName());
         firstbean.setAddress(obj.getAddress());
-        firstbean.setHos_id(idgenerator.generateDoctorHospitalId(obj.getName(), obj.getspeciality()));
+        firstbean.setHos_id(generated_hos_id);
         firstbean.setAbha_id(obj.getAbha_id());
         firstbean.setEmail_Id(obj.getEmail_Id());
-        secondbean.setId(idgenerator.generateDoctorHospitalId(obj.getName(), obj.getspeciality()));
+        secondbean.setId(generated_id);
         secondbean.setPassword(obj.getPassword());
         secondbean.setType(obj.getRole());
+        firstbean.setLogin(secondbean);
         firstbean.setCountry(obj.getCountry());
         firstbean.setGender(obj.getGender());
         firstbean.setSpecility(obj.getspeciality());

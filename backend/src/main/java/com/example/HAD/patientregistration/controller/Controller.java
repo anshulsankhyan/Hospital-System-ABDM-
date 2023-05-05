@@ -171,7 +171,7 @@ public class Controller {
 //		return res;
 //	}
 	@CrossOrigin(origins = "*")
-	@PostMapping("/otp")
+	@PostMapping("/receptionist/otp")
 	public Mono<Object> sendOtpRequest(@RequestBody Modes emp) {
 		System.out.print(emp.getRequestId());
 
@@ -223,7 +223,7 @@ public class Controller {
 		return res;
 	}
 	@CrossOrigin(origins = "*")
-	@PostMapping("/get-otp")
+	@PostMapping("/receptionist/get-otp")
 	public Mono<Object> getOtpRequest(@RequestBody Modes emp) {
 		System.out.print(emp.getRequestId());
 		
@@ -277,7 +277,7 @@ public class Controller {
 		return res;
 	}
 	@CrossOrigin(origins = "*")
-	@PostMapping("/get-demographics")
+	@PostMapping("/receptionist/get-demographics")
 	public Mono<Object> getDemographicsRequest(@RequestBody PatientInfoRequest emp) {
 		System.out.print(emp.getRequestId());
 

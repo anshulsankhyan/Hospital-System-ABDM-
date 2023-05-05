@@ -1,13 +1,13 @@
 package com.example.HAD.admin.doctor;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.example.HAD.login.bean.LoginBean;
+
+import javax.persistence.*;
 
 
 @Entity
+
 public class docbean {
 
 
@@ -50,6 +50,14 @@ public class docbean {
 
     private String name;
 
+    public LoginBean getLogin() {
+        return login;
+    }
+
+    public void setLogin(LoginBean login) {
+        this.login = login;
+    }
+
     public String getHos_id() {
         return hos_id;
     }
@@ -67,6 +75,7 @@ public class docbean {
     }
 
     @Id
+    @Column(name = "hos_id")
    private String hos_id;
 
     String email_Id;
@@ -112,6 +121,9 @@ public class docbean {
     String Country;
 
     String specility;
+
+@OneToOne(mappedBy = "bean", cascade = CascadeType.ALL)
+    private LoginBean login;
 
 
 

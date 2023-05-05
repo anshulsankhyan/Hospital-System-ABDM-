@@ -26,7 +26,7 @@ public class pres {
 
 
     @CrossOrigin (origins = "*")
-    @PostMapping("/savepres")
+    @PostMapping("/doctor/savepres")
     public String Savepres (@RequestBody bean object) {
 
         return SavePres.savePres(object);
@@ -35,7 +35,7 @@ public class pres {
 
 
     @CrossOrigin(origins = "*")
-    @PostMapping("/get-pres")
+    @PostMapping("/doctor/get-pres")
     public ResponseEntity<bean> getdempgraphic(@RequestBody patientIDRes object) {
 
         return SavePres.showPres(object);

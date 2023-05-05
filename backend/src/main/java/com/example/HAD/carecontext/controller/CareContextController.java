@@ -57,7 +57,7 @@ public class CareContextController {
 	
 	
 	@CrossOrigin(origins = "*")
-	@PostMapping("/add-context-status")
+	@PostMapping("/doctor/add-context-status")
 	public ResponseEntity<TransactionId> DbbackResponse(@RequestBody AbhaIDRequest object) {
 		
 
@@ -89,7 +89,7 @@ public class CareContextController {
 		}
 	
 	@CrossOrigin(origins = "*")
-	@PostMapping("/care-context")
+	@PostMapping("/doctor/care-context")
 	public Object getOtpRequest(@RequestBody CareContextRequest request) {
 		//System.out.print(request.getRequestId());
 		Employee emp=new Employee();
