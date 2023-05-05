@@ -14,6 +14,9 @@ public class doc_controller {
     @Autowired
     doc_service service;
 
+    @Autowired
+    doc_dao dao;
+
 
 
     @CrossOrigin(origins = "*")
@@ -24,12 +27,13 @@ public class doc_controller {
 
     }
 
-    @CrossOrigin (origins = "*")
-    @PostMapping("/deletedoc")
-    public String delete(@RequestBody largeBean obj){
-
-//        return service.deletedoc(obj);
-        return null;
-    }
-
-}
+//    @CrossOrigin (origins = "*")
+//    @PostMapping("/deletedoc")
+//    public void deleteDocBean(String hosId) {
+////        docbean beanToDelete = dao.find(hosId);
+////        if (beanToDelete != null) {
+////            dao.remove(beanToDelete);
+////        }
+//  }
+//
+   }

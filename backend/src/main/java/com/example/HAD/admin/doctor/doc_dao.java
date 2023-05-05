@@ -1,5 +1,6 @@
 package com.example.HAD.admin.doctor;
 
+import com.example.HAD.login.bean.LoginBean;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
@@ -7,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public interface doc_dao extends JpaRepository<docbean,Integer> {
 
-//    largeBean findByAbhaId(String requestid);
+   LoginBean findById(String requestid);
 
     void delete(docbean firstbean);
 

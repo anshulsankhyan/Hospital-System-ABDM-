@@ -47,7 +47,7 @@ public class PatientQueueServiceImpl implements PatientQueueService{
 		  
 	        while (iterator.hasNext()) {
 	        	
-	        	PatientRequestBean data= 	(PatientRequestBean) iterator.next();
+	        	PatientRequestBean data = (PatientRequestBean) iterator.next();
 	        	if(data.getPatientId().equalsIgnoreCase(bean.getPatientId()))
 	        	{
 	        		data.setStatus("Inactive");

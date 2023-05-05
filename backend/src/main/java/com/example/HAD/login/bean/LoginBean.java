@@ -36,8 +36,8 @@ public class LoginBean {
 	        return type;
 	    }
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "fk_hos_id",referencedColumnName = "hos_id")
+
+	@OneToOne(mappedBy = "login", cascade = CascadeType.ALL, orphanRemoval = true)
 	private docbean bean;
 
 

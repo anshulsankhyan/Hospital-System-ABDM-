@@ -122,7 +122,8 @@ public class docbean {
 
     String specility;
 
-@OneToOne(mappedBy = "bean", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_id",referencedColumnName = "id")
     private LoginBean login;
 
 
