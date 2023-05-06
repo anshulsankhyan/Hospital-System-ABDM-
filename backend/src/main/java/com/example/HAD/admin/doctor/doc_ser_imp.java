@@ -37,7 +37,7 @@ public class doc_ser_imp implements doc_service {
         firstbean.setEmail_Id(obj.getEmail_Id());
         secondbean.setId(generated_id);
         secondbean.setPassword(obj.getPassword());
-        secondbean.setType(obj.getRole());
+        secondbean.setType("ROLE_"+obj.getRole());
         firstbean.setLogin(secondbean);
         firstbean.setCountry(obj.getCountry());
         firstbean.setGender(obj.getGender());

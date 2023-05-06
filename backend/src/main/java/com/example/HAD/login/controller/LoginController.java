@@ -42,12 +42,26 @@ public class LoginController {
 		}
 		LoginBean abc= dao2.findById(object.getId()).orElse(null);
 		LoginResponse response=new LoginResponse();
-		response.setName(abc.getBean().getName());
-		response.setHosId(abc.getBean().getHos_id());
+//		String type = abc.getType();
+
+		if(abc.getBean() == null){
+		response.setName(abc.getRec().getName());
+		response.setHosId(abc.getRec().getHos_id());
 		response.setToken(jwtUtil.generateToken(object.getId(),Loginservice.login(object)));
 		response.setRole(abc.getType());
-		return response;
+//		return response;
+		}
+
+		else if(abc.getRec() == null){
+			response.setName(abc.getBean().getName());
+			response.setHosId(abc.getBean().getHos_id());
+			response.setToken(jwtUtil.generateToken(object.getId(),Loginservice.login(object)));
+			response.setRole(abc.getType());
+
+		}
 		// return Loginservice.login(object);
+
+		return response;
 	}
 
 }

@@ -40,12 +40,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter   {
 
 	    @Override
 	    public void configure(HttpSecurity  http) throws Exception {
-	        http.csrf().disable().authorizeRequests().antMatchers("/**")
-	                .permitAll().anyRequest().authenticated().and().exceptionHandling().and().sessionManagement()
-	                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-	        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);;
-	    //	web.ignoring().mvcMatchers("v0.5/users/auth/on-fetch-modes", "/v0.5/login");
-	    	
+//	        http.csrf().disable().authorizeRequests().antMatchers("/**")
+//	                .permitAll().anyRequest().authenticated().and().exceptionHandling().and().sessionManagement()
+//	                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//	        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);;
+//	    //	web.ignoring().mvcMatchers("v0.5/users/auth/on-fetch-modes", "/v0.5/login");
+
+			http.cors();
+			http.csrf()
+					.disable()
+					.authorizeRequests()
+					.antMatchers("/login/**")
+					.permitAll()
+					.antMatchers("/receptionist/**")
+					.hasRole("receptionist")
+					.antMatchers("/doctor/**")
+					.hasRole("doctor")
+					.anyRequest()
+					.authenticated()
+					.and()
+					.sessionManagement()
+					.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+			http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 	    }
 	 
 	}

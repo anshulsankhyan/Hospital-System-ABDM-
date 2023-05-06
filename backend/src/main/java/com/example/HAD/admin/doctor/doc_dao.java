@@ -12,9 +12,9 @@ import javax.persistence.PersistenceContext;
 @Component
 
 public interface doc_dao extends JpaRepository<docbean,Integer> {
-    void deleteByLoginBean(LoginBean bean);
+    //void deleteByLoginBean(LoginBean bean);
 
-    docbean findByLoginBean(LoginBean bean);
+    //docbean findByLoginBean(LoginBean bean);
 
 //   LoginBean findById(String requestid);
 //

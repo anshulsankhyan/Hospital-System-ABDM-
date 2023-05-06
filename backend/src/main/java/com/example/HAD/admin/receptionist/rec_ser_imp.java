@@ -23,15 +23,19 @@ public class rec_ser_imp implements rec_service {
         
         recbean firstbean = new recbean();
         LoginBean secondbean = new LoginBean();
+
+        String generated_id = idgenerator.generateDoctorHospitalId(obj.getName(), obj.getRole());
+        String generated_hos_id = idgenerator.generateDoctorHospitalId(obj.getName(), "XYZ");
         
         firstbean.setMobile(obj.getMobile());
         firstbean.setName(obj.getName());
         firstbean.setAddress(obj.getAddress());
-        firstbean.setHos_id(idgenerator.generateDoctorHospitalId(obj.getName(), obj.getRole()));
+        firstbean.setHos_id(generated_hos_id);
         firstbean.setEmail_Id(obj.getEmail_Id());
-        secondbean.setId(idgenerator.generateDoctorHospitalId(obj.getName(), obj.getRole()));
+        secondbean.setId(generated_id);
         secondbean.setPassword(obj.getPassword());
-        secondbean.setType(obj.getRole());
+        secondbean.setType("ROLE_"+obj.getRole());
+        firstbean.setLogin(secondbean);
         firstbean.setGender(obj.getGender());
         firstbean.setYearofBirth(obj.getYearofBirth());
 
