@@ -58,7 +58,6 @@ public class doc_ser_imp implements doc_service {
     @Override
     public String deletedoc(Delete_bean obj) {
 
-       LoginBean abc= dao2.findById(obj.getUserName()).orElse(null);
         dao2.deleteById(obj.getUserName());
 
 

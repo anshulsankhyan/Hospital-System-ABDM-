@@ -20,16 +20,16 @@ public class rec_controller {
     @PostMapping("/savrec")
     public String service(@RequestBody largeBean object){
 
-        return service.savedoc(object);
+        return service.saverec(object);
 
     }
 
     @CrossOrigin (origins = "*")
     @PostMapping("/deleterec")
-    public String delete(@RequestBody largeBean obj){
+    public String delete(@RequestBody Delete_rec_bean obj){
 
-//        return service.deletedoc(obj);
-        return null;
+       return service.deleterec(obj);
+
     }
 
 }

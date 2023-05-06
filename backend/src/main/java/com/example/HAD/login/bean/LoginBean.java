@@ -1,6 +1,7 @@
 package com.example.HAD.login.bean;
 
 import com.example.HAD.admin.doctor.docbean;
+import com.example.HAD.admin.receptionist.recbean;
 
 import javax.persistence.*;
 
@@ -50,11 +51,22 @@ public class LoginBean {
 	@OneToOne(mappedBy = "login", cascade = CascadeType.ALL, orphanRemoval = true)
 	private docbean bean;
 
+	@OneToOne(mappedBy = "login", cascade = CascadeType.ALL, orphanRemoval = true)
+	private recbean rec;
+
 
 	public LoginBean() {
 	}
 
 	private String type;
+
+	public recbean getRec() {
+		return rec;
+	}
+
+	public void setRec(recbean rec) {
+		this.rec = rec;
+	}
 
 	public LoginBean(String id, String password, String type) {
 		this.id = id;

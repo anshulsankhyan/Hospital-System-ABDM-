@@ -19,7 +19,7 @@ public class rec_ser_imp implements rec_service {
     
 
     @Override
-    public String savedoc(largeBean obj) {
+    public String saverec(largeBean obj) {
         
         recbean firstbean = new recbean();
         LoginBean secondbean = new LoginBean();
@@ -46,24 +46,13 @@ public class rec_ser_imp implements rec_service {
         return "sucess";
     }
 
-//    @Override
-//    public String deletedoc(largeBean obj) {
-//        docbean firstbean = new docbean();
-//        LoginBean secondbean = new LoginBean();
-//
-//        firstbean.setMobile(obj.mobile);
-//        firstbean.setName(obj.name);
-//        firstbean.setAddress(obj.Address);
-//        firstbean.setAbha_id(obj.abha_id);
-//        secondbean.setId(obj.id);
-//        secondbean.setPassword(obj.password);
-//        secondbean.setType(obj.role);
-//
-//        dao1.deleteById(firstbean.getAbha_id());
-//
-//        dao2.delete(secondbean);
-//
-//        return "deleted";
-//
-//   }
+    @Override
+    public String deleterec(Delete_rec_bean object) {
+
+
+        dao2.deleteById(object.getUsername());
+        return "deleted";
+    }
+
+
 }

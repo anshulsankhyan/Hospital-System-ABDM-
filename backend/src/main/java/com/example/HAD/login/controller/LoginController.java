@@ -45,6 +45,7 @@ public class LoginController {
 		response.setName(abc.getBean().getName());
 		response.setHosId(abc.getBean().getHos_id());
 		response.setToken(jwtUtil.generateToken(object.getId(),Loginservice.login(object)));
+		response.setRole(abc.getType());
 		return response;
 		// return Loginservice.login(object);
 	}

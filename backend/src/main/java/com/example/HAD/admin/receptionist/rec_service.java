@@ -2,9 +2,9 @@ package com.example.HAD.admin.receptionist;
 
 public interface rec_service {
 
-    String savedoc(largeBean obj);
+    String saverec(largeBean obj);
 
-//    String deletedoc(largeBean object);
+    String deleterec(Delete_rec_bean object);
 
 
 }

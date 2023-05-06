@@ -1,8 +1,9 @@
 package com.example.HAD.admin.receptionist;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.example.HAD.login.bean.LoginBean;
+
+import javax.persistence.*;
 
 
 @Entity
@@ -85,8 +86,16 @@ public class recbean {
 
     String YearofBirth;
 
+ @OneToOne(cascade = CascadeType.ALL)
+ @JoinColumn(name = "fk_recid",referencedColumnName = "id")
+ private LoginBean login;
 
 
+    public LoginBean getLogin() {
+        return login;
+    }
 
-
+    public void setLogin(LoginBean login) {
+        this.login = login;
+    }
 }
