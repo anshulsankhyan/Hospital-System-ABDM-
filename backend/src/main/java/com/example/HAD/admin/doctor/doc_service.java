@@ -4,7 +4,7 @@ public interface doc_service {
 
     String savedoc(largeBean obj);
 
-//    String deletedoc(largeBean object);
+    String deletedoc(Delete_bean object);
 
 
 }

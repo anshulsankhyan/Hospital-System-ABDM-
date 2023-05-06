@@ -9,13 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RestController
-public class doc_controller {
+public class Doc_controller {
 
     @Autowired
     doc_service service;
-
-    @Autowired
-    doc_dao dao;
 
 
 
@@ -27,13 +24,12 @@ public class doc_controller {
 
     }
 
-//    @CrossOrigin (origins = "*")
-//    @PostMapping("/deletedoc")
-//    public void deleteDocBean(String hosId) {
-////        docbean beanToDelete = dao.find(hosId);
-////        if (beanToDelete != null) {
-////            dao.remove(beanToDelete);
-////        }
-//  }
-//
-   }
+    @CrossOrigin (origins = "*")
+    @PostMapping("/deletedoc")
+    public String delete(@RequestBody Delete_bean obj){
+
+       return service.deletedoc(obj);
+
+    }
+
+}

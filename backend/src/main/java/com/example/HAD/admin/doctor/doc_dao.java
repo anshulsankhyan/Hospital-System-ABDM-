@@ -3,14 +3,22 @@ package com.example.HAD.admin.doctor;
 import com.example.HAD.login.bean.LoginBean;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 
 @Component
+
 public interface doc_dao extends JpaRepository<docbean,Integer> {
+    void deleteByLoginBean(LoginBean bean);
 
-   LoginBean findById(String requestid);
+    docbean findByLoginBean(LoginBean bean);
 
-    void delete(docbean firstbean);
+//   LoginBean findById(String requestid);
+//
+
 
 @Component
     public class DoctorHospitalIdGenerator {

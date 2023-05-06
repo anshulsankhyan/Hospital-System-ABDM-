@@ -55,24 +55,19 @@ public class doc_ser_imp implements doc_service {
         return "sucess";
     }
 
-//    @Override
-//    public String deletedoc(largeBean obj) {
-//        docbean firstbean = new docbean();
-//        LoginBean secondbean = new LoginBean();
-//
-//        firstbean.setMobile(obj.mobile);
-//        firstbean.setName(obj.name);
-//        firstbean.setAddress(obj.Address);
-//        firstbean.setAbha_id(obj.abha_id);
-//        secondbean.setId(obj.id);
-//        secondbean.setPassword(obj.password);
-//        secondbean.setType(obj.role);
-//
-//        dao1.deleteById(firstbean.getAbha_id());
-//
-//        dao2.delete(secondbean);
-//
-//        return "deleted";
-//
-//   }
+    @Override
+    public String deletedoc(Delete_bean obj) {
+
+       LoginBean abc= dao2.findById(obj.getUserName()).orElse(null);
+        dao2.deleteById(obj.getUserName());
+
+
+       // docbean firs= dao1.findByLoginBean(bean);
+
+
+
+
+        return "deleted";
+
+   }
 }

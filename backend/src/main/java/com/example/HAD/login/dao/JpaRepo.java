@@ -10,7 +10,7 @@ import com.example.HAD.login.bean.LoginBean;
 	
 	public interface JpaRepo extends JpaRepository<LoginBean, String> {
 
-		LoginBean findByIdAndPassword(String id, String password);
+		LoginBean findByIdAndPassword(String userName, String password);
 
 	}
 

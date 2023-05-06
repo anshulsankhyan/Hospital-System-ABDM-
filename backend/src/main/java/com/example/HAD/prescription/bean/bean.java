@@ -10,9 +10,20 @@ public class bean {
     @Id
     String patientId;
     String pulse;
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
+    }
+
     String bloodPressure;
     String diagnosis;
     String prescription;
+
+    String Date;
 
 
 

@@ -1,6 +1,8 @@
 package com.example.HAD.login.controller;
 
 import com.example.HAD.config.JwtUtil;
+import com.example.HAD.login.bean.LoginResponse;
+import com.example.HAD.login.dao.JpaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,7 +18,8 @@ import com.example.HAD.login.service.LoginServiceImpl;
 @RestController
 public class LoginController {
 
-
+	@Autowired
+	JpaRepo dao2;
 
 	@Autowired
 	private JwtUtil jwtUtil;
@@ -27,7 +30,7 @@ public class LoginController {
 
 	@CrossOrigin (origins = "*")
 	@PostMapping("/login")
-	public String login (@RequestBody LoginBean object) throws Exception{
+	public LoginResponse login (@RequestBody LoginBean object) throws Exception{
 
 		try {
 			authenticationManager.authenticate(
@@ -35,9 +38,14 @@ public class LoginController {
 			);
 		} catch (Exception ex) {
 			System.out.println("inavalid username/password");
-			return "Invalid Credentials";
+			return new LoginResponse();
 		}
-		return jwtUtil.generateToken(object.getId(),Loginservice.login(object));
+		LoginBean abc= dao2.findById(object.getId()).orElse(null);
+		LoginResponse response=new LoginResponse();
+		response.setName(abc.getBean().getName());
+		response.setHosId(abc.getBean().getHos_id());
+		response.setToken(jwtUtil.generateToken(object.getId(),Loginservice.login(object)));
+		return response;
 		// return Loginservice.login(object);
 	}
 

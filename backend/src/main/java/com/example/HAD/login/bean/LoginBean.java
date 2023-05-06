@@ -10,19 +10,29 @@ public class LoginBean {
 	@Id
 	private String id;
 
-	    public String getId() {
-	        return id;
-	    }
+	public docbean getBean() {
+		return bean;
+	}
 
-	    private String password;
+	public void setBean(docbean bean) {
+		this.bean = bean;
+	}
+
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	private String password;
 
 	    public String getPassword() {
 	        return password;
 	    }
 
-	    public void setId(String id) {
-	        this.id = id;
-	    }
 
 	    public void setPassword(String password) {
 	        this.password = password;
