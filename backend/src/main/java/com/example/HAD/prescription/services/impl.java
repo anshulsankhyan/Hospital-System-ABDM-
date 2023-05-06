@@ -1,15 +1,13 @@
 package com.example.HAD.prescription.services;
 
-import com.example.HAD.prescription.bean.bean;
+import com.example.HAD.prescription.bean.MedicalRecords;
 import com.example.HAD.prescription.bean.patientIDRes;
 import com.example.HAD.prescription.dao.savedata;
-import org.hibernate.query.criteria.internal.expression.function.CurrentDateFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
-import java.text.ParseException;
 import java.util.Date;
 
 @Service
@@ -19,18 +17,25 @@ public class impl implements Save{
     savedata saved;
 
     Date date = new Date();
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
     String str = formatter.format(date);
     @Override
-public String savePres(bean obj) {
+public String savePres(MedicalRecords obj) {
 
-    bean Bean = new bean();
+    MedicalRecords Bean = new MedicalRecords();
 
     Bean.setPatientId(obj.getPatientId());
     Bean.setPulse(obj.getPulse());
     Bean.setBloodPressure(obj.getBloodPressure());
     Bean.setDiagnosis(obj.getDiagnosis());
-    Bean.setPrescription(obj.getPrescription());
+    //Bean.setConsentId();
+    Bean.setDosage(obj.getDosage());
+    Bean.setInstruction(obj.getInstruction());
+    Bean.setMedicine(obj.getMedicine());
+    Bean.setPattern(obj.getPattern());
+    Bean.setTimings(obj.getTimings());
+    //Bean.setVistid();
+    Bean.setSymptons(obj.getSymptons());
     Bean.setDate(str);
 
     saved.save(Bean);
@@ -39,14 +44,14 @@ public String savePres(bean obj) {
 }
 
 @Override
-    public ResponseEntity<bean> showPres(patientIDRes object){
-    bean Bean=new bean ();
+    public ResponseEntity<MedicalRecords> showPres(patientIDRes object){
+    MedicalRecords Bean=new MedicalRecords();
 
     Bean= saved.findByPatientId(object.getPatientId());
 
     if(Bean!=null)
     {
-        return new ResponseEntity<bean>(Bean, HttpStatus.OK);
+        return new ResponseEntity<MedicalRecords>(Bean, HttpStatus.OK);
     }
 //    else
 //        return new ResponseEntity<bean>(Bean, HttpStatus.BAD_REQUEST);

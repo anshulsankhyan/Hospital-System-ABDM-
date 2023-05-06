@@ -1,12 +1,12 @@
 package com.example.HAD.prescription.services;
 
-import com.example.HAD.prescription.bean.bean;
+import com.example.HAD.prescription.bean.MedicalRecords;
 import com.example.HAD.prescription.bean.patientIDRes;
 import org.springframework.http.ResponseEntity;
 
 public interface Save {
 
-    String  savePres(bean obj);
+    String  savePres(MedicalRecords obj);
 
-    ResponseEntity<bean> showPres(patientIDRes object);
+    ResponseEntity<MedicalRecords> showPres(patientIDRes object);
 }
