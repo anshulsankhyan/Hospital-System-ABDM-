@@ -1,10 +1,15 @@
 package com.example.HAD.admin.doctor;
 
+import java.util.List;
+
 public interface doc_service {
 
-    String savedoc(largeBean obj);
+    ReturnId savedoc(largeBean obj);
 
     String deletedoc(Delete_bean object);
 
+//     List<docbean> getDoctor();
 
+
+    List<docbean> getAllDoctorsWithType();
 }

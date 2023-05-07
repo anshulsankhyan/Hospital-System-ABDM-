@@ -2,10 +2,9 @@ package com.example.HAD.admin.doctor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RestController
@@ -17,19 +16,24 @@ public class Doc_controller {
 
 
     @CrossOrigin(origins = "*")
-    @PostMapping("/savdoc")
-    public String service(@RequestBody largeBean object){
+    @PostMapping("/admin/savdoc")
+    public ReturnId service(@RequestBody largeBean object){
 
         return service.savedoc(object);
 
     }
 
     @CrossOrigin (origins = "*")
-    @PostMapping("/deletedoc")
+    @PostMapping("/admin/deletedoc")
     public String delete(@RequestBody Delete_bean obj){
 
        return service.deletedoc(obj);
 
+    }
+
+    @GetMapping("/receptionist/doclist")
+    public List<docbean> getAllDoctorsWithType( ) {
+        return service.getAllDoctorsWithType();
     }
 
 }

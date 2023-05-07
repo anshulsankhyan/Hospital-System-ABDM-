@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 
 @Component
@@ -18,6 +19,7 @@ public interface doc_dao extends JpaRepository<docbean,Integer> {
 
 //   LoginBean findById(String requestid);
 //
+
 
 
 @Component

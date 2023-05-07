@@ -4,7 +4,9 @@ import com.example.HAD.login.bean.LoginBean;
 import com.example.HAD.login.dao.JpaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.HAD.admin.doctor.doc_dao;
+
+import java.util.List;
+
 @Service
 public class doc_ser_imp implements doc_service {
     
@@ -19,10 +21,11 @@ public class doc_ser_imp implements doc_service {
     
 
     @Override
-    public String savedoc(largeBean obj) {
+    public ReturnId savedoc(largeBean obj) {
         
         docbean firstbean = new docbean();
         LoginBean secondbean = new LoginBean();
+        ReturnId print = new ReturnId();
 
 
 
@@ -46,13 +49,17 @@ public class doc_ser_imp implements doc_service {
 
 
 
+        print.setId(generated_id);
+
         dao1.save(firstbean);
 
         dao2.save(secondbean);
+
+
         
         
         
-        return "sucess";
+        return print;
     }
 
     @Override
@@ -69,4 +76,11 @@ public class doc_ser_imp implements doc_service {
         return "deleted";
 
    }
+
+
+
+    @Override
+    public List<docbean> getAllDoctorsWithType() {
+        return dao1.findAll();
+    }
 }

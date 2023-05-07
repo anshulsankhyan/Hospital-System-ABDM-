@@ -57,7 +57,7 @@ public class Controller {
 	String idValue="sbx";
 	
 	@CrossOrigin(origins = "*")
-	@PostMapping("/save-patient")
+	@PostMapping("/receptionist/save-patient")
 	public ResponseEntity<String> savedempgraphic(@RequestBody PatientDemographicBean object) {
 
 		PatientDemographicBean bean=new PatientDemographicBean ();
@@ -79,7 +79,7 @@ public class Controller {
 	}
 	
 	@CrossOrigin(origins = "*")
-	@PostMapping("/get-demographic")
+	@PostMapping("/receptionist/get-demographic")
 	public ResponseEntity<PatientDemographicBean> getdempgraphic(@RequestBody AbhaIDRequest object) {
 
 		PatientDemographicBean bean=new PatientDemographicBean ();

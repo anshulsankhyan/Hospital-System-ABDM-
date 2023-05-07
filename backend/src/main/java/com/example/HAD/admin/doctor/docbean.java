@@ -2,6 +2,7 @@ package com.example.HAD.admin.doctor;
 
 
 import com.example.HAD.login.bean.LoginBean;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -122,6 +123,7 @@ public class docbean {
 
     String specility;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_id",referencedColumnName = "id")
     private LoginBean login;

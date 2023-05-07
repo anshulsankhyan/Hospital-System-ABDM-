@@ -48,7 +48,7 @@ JpaRepo dao;
 	InitializingBean LogingBean() {
 		return () -> {
 
-			dao.save(new LoginBean ("101", "pass", "admin"));
+			dao.save(new LoginBean ("admin", "pass", "ROLE_admin"));
 
 		};
 	}

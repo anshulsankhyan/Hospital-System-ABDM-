@@ -44,7 +44,7 @@ public class LoginController {
 		LoginResponse response=new LoginResponse();
 //		String type = abc.getType();
 
-		if(abc.getBean() == null){
+		if(abc.getRec() != null){
 		response.setName(abc.getRec().getName());
 		response.setHosId(abc.getRec().getHos_id());
 		response.setToken(jwtUtil.generateToken(object.getId(),Loginservice.login(object)));
@@ -52,12 +52,16 @@ public class LoginController {
 //		return response;
 		}
 
-		else if(abc.getRec() == null){
+		else if(abc.getBean() != null){
 			response.setName(abc.getBean().getName());
 			response.setHosId(abc.getBean().getHos_id());
 			response.setToken(jwtUtil.generateToken(object.getId(),Loginservice.login(object)));
 			response.setRole(abc.getType());
 
+		}
+		else{
+			response.setToken(jwtUtil.generateToken(object.getId(),Loginservice.login(object)));
+			response.setRole(abc.getType());
 		}
 		// return Loginservice.login(object);
 
