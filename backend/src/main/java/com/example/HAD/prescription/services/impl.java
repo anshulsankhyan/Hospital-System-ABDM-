@@ -4,11 +4,10 @@ import com.example.HAD.prescription.bean.MedicalRecords;
 import com.example.HAD.prescription.bean.patientIDRes;
 import com.example.HAD.prescription.dao.savedata;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class impl implements Save{
@@ -17,7 +16,7 @@ public class impl implements Save{
     savedata saved;
 
     Date date = new Date();
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     String str = formatter.format(date);
     @Override
 public String savePres(MedicalRecords obj) {
@@ -28,14 +27,14 @@ public String savePres(MedicalRecords obj) {
     Bean.setPulse(obj.getPulse());
     Bean.setBloodPressure(obj.getBloodPressure());
     Bean.setDiagnosis(obj.getDiagnosis());
-    //Bean.setConsentId();
+    Bean.setConsentId("123");
     Bean.setDosage(obj.getDosage());
     Bean.setInstruction(obj.getInstruction());
     Bean.setMedicine(obj.getMedicine());
     Bean.setPattern(obj.getPattern());
     Bean.setTimings(obj.getTimings());
-    //Bean.setVistid();
-    Bean.setSymptons(obj.getSymptons());
+    Bean.setVistid("321");
+    Bean.setsymptoms(obj.getsymptoms());
     Bean.setDate(str);
 
     saved.save(Bean);
@@ -43,22 +42,31 @@ public String savePres(MedicalRecords obj) {
     return "sucess";
 }
 
-@Override
-    public ResponseEntity<MedicalRecords> showPres(patientIDRes object){
-    MedicalRecords Bean=new MedicalRecords();
+    @Override
+    public List<MedicalRecords> findAllByPatientId(String object) {
+        List<MedicalRecords> abcd = saved.findAllByPatientId(object);
 
-    Bean= saved.findByPatientId(object.getPatientId());
-
-    if(Bean!=null)
-    {
-        return new ResponseEntity<MedicalRecords>(Bean, HttpStatus.OK);
+        return abcd;
     }
-//    else
-//        return new ResponseEntity<bean>(Bean, HttpStatus.BAD_REQUEST);
 
 
-    return null;
-}
+
+
+
+
+
+//    Bean=
+
+//    if(Bean!=null)
+//    {
+//        return new ResponseEntity<MedicalRecords>(Bean, HttpStatus.OK);
+//    }
+////    else
+////        return new ResponseEntity<bean>(Bean, HttpStatus.BAD_REQUEST);
+//
+//
+//    return null;
+
 
 
 

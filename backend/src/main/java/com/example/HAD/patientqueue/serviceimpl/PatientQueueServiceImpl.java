@@ -1,4 +1,5 @@
 package com.example.HAD.patientqueue.serviceimpl;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -17,18 +18,18 @@ import com.example.HAD.patientqueue.service.PatientQueueService;
 @Service
 public class PatientQueueServiceImpl implements PatientQueueService{
 
-	 Map<Integer, Queue<PatientRequestBean>> map = new HashMap<>();
+	 Map<String, Queue<PatientRequestBean>> map = new HashMap<>();
 	@Override
 	public String addPatient(PatientRequestBean bean) {
 		 Queue<PatientRequestBean> que= new LinkedList<PatientRequestBean>();
 		 bean.setStatus("Active");
-		 if(map.get(Integer.parseInt(bean.getDoctorId()))!=null)
+		 if(map.get((bean.getDoctorId()))!=null)
 		 {
-		 que.addAll(map.get(Integer.parseInt(bean.getDoctorId())));
+		 que.addAll(map.get((bean.getDoctorId())));
 		 }
 		 
 		 que.add(bean);
-		map.put(Integer.parseInt(bean.getDoctorId()), que);
+		map.put((bean.getDoctorId()), que);
 		return "Success";
 	}
 
@@ -36,10 +37,10 @@ public class PatientQueueServiceImpl implements PatientQueueService{
 	public String deletePatient(PatientRequestBean bean) {
 		
 		Queue<PatientRequestBean> que= new LinkedList<PatientRequestBean>();
-		 if(map.get(Integer.parseInt(bean.getDoctorId()))!=null)
+		 if(map.get((bean.getDoctorId()))!=null)
 		 {
 			
-		 que.addAll(map.get(Integer.parseInt(bean.getDoctorId())));
+		 que.addAll(map.get((bean.getDoctorId())));
 		 
 		 PatientListResponse patientListResponse=new PatientListResponse();
 		 List<PatientRequestBean> ptnList=new ArrayList<>();
@@ -47,7 +48,7 @@ public class PatientQueueServiceImpl implements PatientQueueService{
 		  
 	        while (iterator.hasNext()) {
 	        	
-	        	PatientRequestBean data = (PatientRequestBean) iterator.next();
+	        	PatientRequestBean data= 	(PatientRequestBean) iterator.next();
 	        	if(data.getPatientId().equalsIgnoreCase(bean.getPatientId()))
 	        	{
 	        		data.setStatus("Inactive");
@@ -56,7 +57,7 @@ public class PatientQueueServiceImpl implements PatientQueueService{
 	        }
 	        Queue<PatientRequestBean>  que1=new  LinkedList<PatientRequestBean>();
 	        que1.addAll(ptnList);
-	        map.put(Integer.parseInt(bean.getDoctorId()), que1);
+	        map.put((bean.getDoctorId()), que1);
 		// que.remove();
 	
 			return "Deleted";
@@ -69,9 +70,9 @@ public class PatientQueueServiceImpl implements PatientQueueService{
 	@Override
 	public PatientListResponse getPatient(DoctorId id) {
 		Queue<PatientRequestBean> que= new LinkedList<PatientRequestBean>();
-		 if(map.get(Integer.parseInt(id.getDoctorId()))!=null)
+		 if(map.get((id.getDoctorId()))!=null)
 		 {
-		 que.addAll(map.get(Integer.parseInt(id.getDoctorId())));
+		 que.addAll(map.get((id.getDoctorId())));
 		 PatientListResponse patientListResponse=new PatientListResponse();
 		 List<PatientRequestBean> ptnList=new ArrayList<>();
 		 Iterator iterator = que.iterator();

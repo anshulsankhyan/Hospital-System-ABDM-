@@ -51,12 +51,12 @@ public class MedicalRecords {
         this.pattern = pattern;
     }
 
-    public String getSymptons() {
-        return symptons;
+    public String getsymptoms() {
+        return symptoms;
     }
 
-    public void setSymptons(String symptons) {
-        this.symptons = symptons;
+    public void setsymptoms(String symptoms) {
+        this.symptoms = symptoms;
     }
 
     public String getTimings() {
@@ -78,8 +78,6 @@ public class MedicalRecords {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    String patientId;
-    String pulse;
 
     public String getDate() {
         return Date;
@@ -89,11 +87,7 @@ public class MedicalRecords {
         Date = date;
     }
 
-    String bloodPressure;
-    String diagnosis;
 
-
-    String Date;
 
 
 
@@ -131,22 +125,18 @@ public class MedicalRecords {
 
 
     String consentId;
-
     String medicine;
-
     String dosage;
-
     String instruction;
-
     String pattern;
-
-    String symptons;
-
+    String symptoms;
     String timings;
-
     String vistid;
-
-
+    String bloodPressure;
+    String diagnosis;
+    String patientId;
+    String pulse;
+    String Date;
 
 
 }

@@ -6,6 +6,7 @@ package com.example.HAD.prescription.controller;
 import com.example.HAD.prescription.bean.MedicalRecords;
 import com.example.HAD.prescription.bean.patientIDRes;
 import com.example.HAD.prescription.services.Save;
+import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @Controller
 @RestController
@@ -34,9 +37,15 @@ public class pres {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/doctor/getRecord")
-    public ResponseEntity<MedicalRecords> getdempgraphic(@RequestBody patientIDRes object) {
+    public ResponseEntity<List<MedicalRecords>> getdempgraphic(@RequestBody patientIDRes object) {
 
-        return SavePres.showPres(object);
+        List<MedicalRecords> patients = SavePres.findAllByPatientId(object.getPatientId());
+
+        if (patients.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(patients);
     }
 
 }

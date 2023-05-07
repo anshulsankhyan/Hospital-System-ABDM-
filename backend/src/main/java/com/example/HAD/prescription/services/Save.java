@@ -4,9 +4,14 @@ import com.example.HAD.prescription.bean.MedicalRecords;
 import com.example.HAD.prescription.bean.patientIDRes;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 public interface Save {
 
     String  savePres(MedicalRecords obj);
 
-    ResponseEntity<MedicalRecords> showPres(patientIDRes object);
+
+
+    List<MedicalRecords> findAllByPatientId(String object);
+
 }
