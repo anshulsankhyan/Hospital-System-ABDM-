@@ -1,6 +1,10 @@
 package com.example.HAD.patientregistration.bean;
 
+import org.springframework.beans.factory.annotation.Value;
+
 public class Requester {
+	
+	
 
 	private String type;
 	

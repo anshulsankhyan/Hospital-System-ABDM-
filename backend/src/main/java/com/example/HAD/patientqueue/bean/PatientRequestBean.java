@@ -19,6 +19,17 @@ public class PatientRequestBean {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	String abhaId;
+
+	public String getAbhaId() {
+		return abhaId;
+	}
+
+	public void setAbhaId(String abhaId) {
+		this.abhaId = abhaId;
+	}
+
 	private String patientId;
 	
 	private String patientName;

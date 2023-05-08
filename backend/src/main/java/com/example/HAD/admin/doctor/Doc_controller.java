@@ -30,7 +30,7 @@ public class Doc_controller {
        return service.deletedoc(obj);
 
     }
-
+    @CrossOrigin (origins = "*")
     @GetMapping("/receptionist/doclist")
     public List<docbean> getAllDoctorsWithType( ) {
         return service.getAllDoctorsWithType();

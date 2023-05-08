@@ -32,11 +32,12 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String authorizationHeader = httpServletRequest.getHeader("Authorization");
         String hipId=httpServletRequest.getHeader("X-Hip-Id");
+        String hiuId=httpServletRequest.getHeader("X-Hiu-Id");
 
         String token = null;
         String userName = null;
         String payload;
-        if(hipId!=null)
+        if(hipId!=null || hiuId != null)
         {
             token = authorizationHeader.substring(7);
         	String[] chunks = token.split("\\.");
@@ -62,7 +63,7 @@ public class JwtFilter extends OncePerRequestFilter {
         	 }
         	
         }
-        if (hipId==null && authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+        if (hipId==null && hiuId == null && authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             token = authorizationHeader.substring(7);
             userName = jwtUtil.extractUsername(token);
         }

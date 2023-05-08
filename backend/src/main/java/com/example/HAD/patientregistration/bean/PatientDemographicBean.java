@@ -2,13 +2,13 @@ package com.example.HAD.patientregistration.bean;
 
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class PatientDemographicBean {
 	
@@ -20,9 +20,13 @@ public class PatientDemographicBean {
 	 private String healthNumber;
 	 private String patientId;
 	 
+	
 	 private String bloodGroup;
+
 	 private String weight;
+	
 	 private String emailId;
+	
 	 private String country;
 	 public String getPatientId() {
 		return patientId;
@@ -140,9 +144,11 @@ public class PatientDemographicBean {
 		private String yearOfBirth;
 		private String monthOfBirth;
 		private String dayOfBirth;
+		@JsonIgnore
 		private String line;
 		private String district;
 		private String state;
+		@JsonIgnore
 		private String pincode;
 
 }

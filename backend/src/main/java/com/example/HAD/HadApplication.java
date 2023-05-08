@@ -59,6 +59,8 @@ JpaRepo dao;
 	{
 		WebClient webClinet=WebClient.create();
 		Employee emp = new Employee();
+		emp.setClientId("SBX_002860");
+		emp.setClientSecret("f7046678-9e0f-49ed-bbfd-220fb986c1ca");
 		Mono<TokenResponse> res = webClinet.post().uri("https://dev.abdm.gov.in/gateway/v0.5/sessions")
 				.body(Mono.just(emp), Employee.class).exchange()
 				.flatMap(clientResponse -> clientResponse.bodyToMono(TokenResponse.class));

@@ -1,9 +1,13 @@
 package com.example.HAD.patientregistration.bean;
 
+import org.springframework.beans.factory.annotation.Value;
+
 public class Employee {
-	private String clientId="SBX_002860";
 	
-	private String clientSecret= "f7046678-9e0f-49ed-bbfd-220fb986c1ca";
+
+	private String clientId;
+	
+	private String clientSecret;
 
 	public String getClientId() {
 		return clientId;
