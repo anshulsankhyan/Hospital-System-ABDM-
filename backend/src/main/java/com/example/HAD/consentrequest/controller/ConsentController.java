@@ -321,7 +321,7 @@ public class ConsentController {
 		
 		keyMaterial.setDhPublicKey(dhPublicKey);
 		hirequest.setKeyMaterial(keyMaterial);
-		hirequest.setDataPushUrl("https://156c-103-156-19-229.in.ngrok.io/login/hiu-receive-data");
+		hirequest.setDataPushUrl("https://3e6b-119-161-98-68.in.ngrok.io/login/hiu-receive-data");
 		
 		cmrequest.setHiRequest(hirequest);
 		cmrequest.setRequestId(randomUUIDString);

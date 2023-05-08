@@ -31,7 +31,7 @@ public class ConsentListController {
 	   RestTemplate restTemplate;
 	 
 	 @CrossOrigin(origins = "*")
-	@PostMapping("/doctor/all-consentlist")
+	@PostMapping("/login/all-consentlist")
 	 public List<ConsentRequest> getAll() {
 			//System.out.print(request.getRequestId());
 		 return consentRequestRepository.findAll();
