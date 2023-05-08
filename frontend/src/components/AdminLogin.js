@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Navigate } from 'react-router-dom'
+import base_url from './Url'
 
 export class AdminLogin extends Component {
   constructor(props) {
@@ -9,8 +10,8 @@ export class AdminLogin extends Component {
     this.state = {
       id: '',
       password: '',
-      type: 'admin',
-      goToAdminDashboard: false
+      goToAdminDashboard: false,
+      TOKEN: null
     }
   }
 
@@ -22,14 +23,15 @@ export class AdminLogin extends Component {
   submitHandler = (event) => {
     event.preventDefault()
     axios
-      .post('http://localhost:8080/login', {
+      .post(`${base_url}/login`, {
         id: this.state.id,
         password: this.state.password
       })
       .then(res => {
-        if (res.status >= 200 && res.status <= 299 && res.data !== 'invalid credentials' && res.data === 'admin') {
+        if (res.status >= 200 && res.status <= 299 && res.data.role === 'ROLE_admin') {
           this.setState({
-            goToAdminDashboard: true
+            goToAdminDashboard: true,
+            TOKEN: res.data.token
         })
         }
         else alert('Invalid Credentials')
@@ -42,7 +44,9 @@ export class AdminLogin extends Component {
   render() {
     const { id, password, goToAdminDashboard } = this.state
 
-    if(goToAdminDashboard) return <Navigate to='adminselect'/>
+    if(goToAdminDashboard) return <Navigate to='/adminselect' state={{
+      TOKEN: this.state.TOKEN
+    }}/>
     else
     return (
       <div>
@@ -71,6 +75,7 @@ export class AdminLogin extends Component {
     )
   }
 }
+export const ADMINTOKEN = AdminLogin.TOKEN
 export default AdminLogin
 
 

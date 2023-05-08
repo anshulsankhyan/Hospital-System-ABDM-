@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Navigate } from 'react-router-dom'
+import base_url from './Url'
 
 class AbhaVerification extends Component {
 
@@ -12,7 +13,8 @@ class AbhaVerification extends Component {
             otp: '',
             patientDemographic: {},
             goToRegistration: false,
-            existingPatient: false
+            existingPatient: false,
+            TOKEN: this.props.data?.state?.TOKEN
         }
     }
 
@@ -25,7 +27,7 @@ class AbhaVerification extends Component {
     abhaSubmitHandler = (e) => {
         e.preventDefault()
         axios
-            .post('http://localhost:8080/otp', {
+            .post(`${base_url}/receptionist/otp`, {
                 requestId: '',
                 timestamp: '',
                 query: {
@@ -34,13 +36,17 @@ class AbhaVerification extends Component {
                     authMode: 'MOBILE_OTP',
                     requester: {
                         type: 'HIP',
-                        id: '919'
+                        id: '9159'
                     }
+                }
+            }, {
+                headers: {
+                    Authorization: `Bearer ${this.state.TOKEN}`
                 }
             })
             .then(r => {
                 if (r.status >= 200 && r.status <= 299) {
-                    axios.post('http://localhost:8080/get-otp', {
+                    axios.post(`${base_url}/receptionist/get-otp`, {
                         requestId: '',
                         timestamp: '',
                         query: {
@@ -49,8 +55,12 @@ class AbhaVerification extends Component {
                             purpose: 'KYC_AND_LINK',
                             requester: {
                                 type: 'HIP',
-                                id: '919'
+                                id: '9159'
                             }
+                        }
+                    }, {
+                        headers: {
+                            Authorization: `Bearer ${this.state.TOKEN}`
                         }
                     })
                         .then(r => {
@@ -70,13 +80,17 @@ class AbhaVerification extends Component {
 
     otpSubmitHandler = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:8080/get-demographics', {
+        axios.post(`${base_url}/receptionist/get-demographics`, {
             requestId: '',
             timestamp: '',
             transactionId: '',
             abhaId: this.state.abhaid,
             credential: {
-                authcode: this.state.otp
+                authCode: this.state.otp
+            }
+        }, {
+            headers: {
+                Authorization: `Bearer ${this.state.TOKEN}`
             }
         })
             .then(r => {
@@ -89,7 +103,14 @@ class AbhaVerification extends Component {
                             alert('Server Busy. Try Again!')
                         }
                         axios
-                            .post('http://localhost:8080/get-demographic', { abhaId: this.state.abhaid })
+                            .post(`${base_url}/receptionist/get-demographic`, {
+                                abhaId: this.state.abhaid
+                            }, {
+                                headers: {
+                                    Authorization: `Bearer ${this.state.TOKEN}`
+                                }
+                            }
+                            )
                             .then(res => {
                                 if (res.status >= 200 && res.status <= 299) {
                                     clearInterval(intervalId)
@@ -121,9 +142,9 @@ class AbhaVerification extends Component {
     render() {
         const { abhaid, otp, goToRegistration, existingPatient } = this.state
 
-        if (goToRegistration) return <Navigate to='/registration' state={this.state.patientDemographic} />
+        if (goToRegistration) return <Navigate to='/registration' state={this.state} />
 
-        else if (existingPatient) return <Navigate to='/patientlogin' />
+        else if (existingPatient) return <Navigate to='/patientlogin' state={{TOKEN : this.state.TOKEN}}/>
         else
             return (
                 <div className='registrationBlock'>

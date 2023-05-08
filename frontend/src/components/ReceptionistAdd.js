@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Navigate } from 'react-router-dom'
+import base_url from './Url'
 
 class ReceptionistAdd extends Component {
     constructor(props) {
@@ -15,7 +16,9 @@ class ReceptionistAdd extends Component {
             role: 'receptionist',
             email_id: '',
             password: '',
-            goToAdminSelect: false
+            goToAdminSelect: false,
+
+            TOKEN: this.props.data?.state?.TOKEN || null
         }
     }
 
@@ -33,30 +36,35 @@ class ReceptionistAdd extends Component {
 
     receptionistDetailsSubmit = e => {
         e.preventDefault()
-        axios.post('http://localhost:8080/add-rec', {
+        axios.post(`${base_url}/admin/savrec`, {
             name: this.state.name,
             gender: this.state.gender,
-            yearOfBirth: this.state.yearOfBirth,
+            yearofBirth: this.state.yearOfBirth,
             address: this.state.address,
             mobile: this.state.mobile,
             role: 'receptionist',
-            email_id: this.state.email_id,
+            email_Id: this.state.email_id,
             password: this.state.password,
+        }, {
+            headers: {
+                Authorization: `Bearer ${this.state.TOKEN}`
+            }
         })
         .then(res => {
             if(res.status >= 200 && res.status <= 299) {
+                alert('Receptionist Sucessfully Added')
                 this.setState({
                     goToAdminSelect : true
                 })
             }
             else {
-                alert('Server Down')
+                alert('Invalid token or Server Down')
             }
         })
     }
     render() {
         const { name, gender, yearOfBirth, address, mobile, email_id, password, goToAdminSelect } = this.state
-        if(goToAdminSelect) return <Navigate to = 'receptionistadd'/>
+        if(goToAdminSelect) return <Navigate to = '/adminselect' state = { {TOKEN : this.state.TOKEN } }/>
         else
         return (
             <div className='registrationBlock'>

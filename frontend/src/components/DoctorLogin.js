@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Navigate } from 'react-router-dom'
+import base_url from './Url'
 
 export class DoctorLogin extends Component {
 
@@ -12,7 +13,10 @@ export class DoctorLogin extends Component {
             password: '',
             flag: false,
             objectOfPatientList: {},
-            type: 'doctor'
+            type: 'doctor',
+            TOKEN: null,
+            doctorName: '',
+            doctorHosId: ''
         }
     }
 
@@ -25,15 +29,23 @@ export class DoctorLogin extends Component {
     submitHandler = (event) => {
         event.preventDefault()
         axios
-            .post('http://localhost:8080/login', {
+            .post(`${base_url}/login`, {
                 id: this.state.id,
                 password: this.state.password
             })
             .then(res => {
-                if (res.status >= 200 && res.status <= 299 && res.data !== 'invalid credentials' && res.data === 'doctor') {
-
-                    axios.post('http://localhost:8080/patient-list', {
-                        doctorId: this.state.id
+                if (res.status >= 200 && res.status <= 299 && res.data.role === 'ROLE_doctor') {
+                    this.setState({
+                        TOKEN: res.data.token,
+                        doctorName: res.data.name,
+                        doctorHosId: res.data.hosId
+                    })
+                    axios.post(`${base_url}/doctor/patient-list`, {
+                        doctorId: this.state.doctorHosId
+                    }, {
+                        headers: {
+                            Authorization: `Bearer ${this.state.TOKEN}`
+                        }
                     })
                         .then(res => {
                             this.setState({
@@ -42,8 +54,7 @@ export class DoctorLogin extends Component {
                             })
                         })
                         .catch(e => {
-                            console.log(e);
-                            alert("Error fetching doctor's patient list")
+                            console.log(e)
                         })
 
                 }
@@ -56,9 +67,15 @@ export class DoctorLogin extends Component {
     }
 
     render() {
+        console.log(this.state.TOKEN)
         const { id, password, flag } = this.state
 
-        if (flag) return <Navigate to='/search' state={this.state.objectOfPatientList} />
+        if (flag) return <Navigate to='/search' state={{
+            objectOfPatientList: this.state.objectOfPatientList,
+            TOKEN: this.state.TOKEN,
+            doctorName: this.state.doctorName,
+            doctorId: this.state.doctorHosId
+        }} />
         else
             return (
                 <div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Navigate } from 'react-router-dom'
+import base_url from './Url'
 
 export class ReceptionistLogin extends Component {
 
@@ -11,7 +12,8 @@ export class ReceptionistLogin extends Component {
         id: '',
         password: '',
         goToAbha: false,
-        type: 'receptionist'
+        type: 'receptionist',
+        TOKEN: null
       }
     }
 
@@ -24,17 +26,18 @@ export class ReceptionistLogin extends Component {
     submitHandler = (event) => {
         event.preventDefault()
         axios
-            .post('http://localhost:8080/login', {
+            .post(`${base_url}/login`, {
                 id: this.state.id,
                 password: this.state.password
             })
             .then(res => {
-                if(res.status >= 200 && res.status <= 299 && res.data !== 'invalid credentials' && res.data === 'receptionist') {
+                if(res.status >= 200 && res.status <= 299 && res.data.role === 'ROLE_receptionist') {
                     this.setState({
+                        TOKEN: res.data.token,
                         goToAbha: true
                     })
                 }
-                else alert(res.data)
+                else alert('Invalid Token or Credentials')
             })
             .catch(err => {
                 alert('Server Down')
@@ -45,7 +48,7 @@ export class ReceptionistLogin extends Component {
     render() {
         const {id, password, goToAbha} = this.state
 
-        if(goToAbha) return <Navigate to='abha'/>
+        if(goToAbha) return <Navigate to='/abha' state={{TOKEN : this.state.TOKEN}}/>
         else
         return (
             <div>

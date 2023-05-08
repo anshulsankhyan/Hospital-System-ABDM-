@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Navigate } from 'react-router-dom'
+import base_url from './Url'
 
 class PatientLogin extends Component {
     constructor(props) {
-      super(props)
-    
-      this.state = {
-        mobileNumber: '',
-         patientInfo: {},
-         goToAssignment: false
-      }
+        super(props)
+
+        this.state = {
+            mobileNumber: '',
+            patientInfo: {},
+            goToAssignment: false,
+            TOKEN: this.props.data?.state?.TOKEN || ''
+        }
     }
     changeHandler = (e) => {
         this.setState({
@@ -20,24 +22,31 @@ class PatientLogin extends Component {
 
     patientLoginHandler = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:8080/get-demographic', {
+        axios.post(`${base_url}/receptionist/get-demographic`, {
             mobileNumber: this.state.mobileNumber
-        })
-        .then(res => {
-            if(res.status >= 200 && res.status <= 299) {
-                this.setState({
-                    patientInfo: res.data,
-                    goToAssignment: true
-                })
+        }, {
+            headers: {
+                Authorization: `Bearer ${this.state.TOKEN}`
             }
-           
         })
-        .catch(e => {
-            console.log(e)
-        }) 
+            .then(res => {
+                if (res.status >= 200 && res.status <= 299) {
+                    this.setState({
+                        patientInfo: res.data,
+                        goToAssignment: true
+                    })
+                }
+
+            })
+            .catch(e => {
+                console.log(e)
+            })
     }
     render() {
-        if(this.state.goToAssignment) return <Navigate to='/assignment' state={this.state.patientInfo} /> 
+        if (this.state.goToAssignment) return <Navigate to='/assignment' state={{
+            patientInfo: this.state.patientInfo,
+            TOKEN: this.state.TOKEN
+        }} />
         return (
             <div className='registrationBlock'>
 

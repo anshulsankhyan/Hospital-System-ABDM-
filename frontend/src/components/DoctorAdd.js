@@ -18,7 +18,8 @@ class DoctorAdd extends Component {
             speciality: '',
             email_id: '',
             country: '',
-            goToAdminSelect: false
+            goToAdminSelect: false,
+            TOKEN: this.props.data?.state?.TOKEN || null
         }
     }
 
@@ -36,27 +37,32 @@ class DoctorAdd extends Component {
 
     doctorDetailsSubmit = e => {
         e.preventDefault()
-        axios.post('http://localhost:8080/add-doc', {
+        axios.post('http://localhost:8080/admin/savdoc', {
             password: this.state.password,
             name: this.state.name,
             gender: this.state.gender,
-            yearOfBirth: this.state.yearOfBirth,
+            yearofBirth: this.state.yearOfBirth,
             abha_id: this.state.abha_id,
             address: this.state.address,
             mobile: this.state.mobile,
             role: 'doctor',
             speciality: this.state.speciality,
-            email_id: this.state.email_id,
+            email_Id: this.state.email_id,
             country: this.state.country
+        }, {
+            headers: {
+                Authorization: `Bearer ${this.state.TOKEN}`
+            }
         })
         .then(res => {
             if(res.status >= 200 && res.status <= 299) {
+                alert(`Doctor Id generated Successfully with username - ${res.data.id}`)
                 this.setState({
                     goToAdminSelect : true
-                })
+                })      
             }
             else {
-                alert('Server Down')
+                alert('Token expired or Server Down')
             }
         })
     }
@@ -64,7 +70,7 @@ class DoctorAdd extends Component {
     render() {
         const { name, gender, yearOfBirth, abha_id, address, mobile, speciality, email_id, country, password, goToAdminSelect } = this.state
 
-        if(goToAdminSelect) return <Navigate to = 'doctoradd'/>
+        if(goToAdminSelect) return <Navigate to = '/adminselect' state = { {TOKEN : this.state.TOKEN } } />
         else
         return (
             <div className='registrationBlock'>
