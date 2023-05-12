@@ -6,7 +6,7 @@ import base_url from './Url'
 export class AdminLogin extends Component {
   constructor(props) {
     super(props)
-
+ 
     this.state = {
       id: '',
       password: '',
